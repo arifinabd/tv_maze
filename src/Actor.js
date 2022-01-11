@@ -1,11 +1,11 @@
-import React from "react";
+import React, { Component } from "react";
 
-const Actor = () => {
-  return (
-    <div>
-      <h1>Actor</h1>
-    </div>
-  );
-};
-
-export default Actor;
+export class Actor extends Component {
+  render() {
+    return (
+      <div>
+        <h1>ACTOR</h1>
+      </div>
+    );
+  }
+}

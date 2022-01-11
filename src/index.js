@@ -9,11 +9,18 @@ import { createStore } from "redux";
 import { Provider } from "react-redux";
 
 const stateFilm = {
-  tes: "coba redux",
+  activeItems: "home",
 };
 
-const reducerFilm = (state = stateFilm) => {
-  return state;
+const reducerFilm = (state = stateFilm, action) => {
+  console.log("action nya => ", action);
+  switch (action.type) {
+    case "ACTIVE_ITEM":
+      var stateActiveItems = { ...state, activeItems: action.ActiveItem };
+      return stateActiveItems;
+    default:
+      return state;
+  }
 };
 
 const store = createStore(reducerFilm);
