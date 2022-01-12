@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Actor } from "./Actor";
 import App from "./App";
 import { Film } from "./Film";
-import { Home } from "./Home";
+import Home from "./Home";
 import ProtectedRoute from "./auth/protected-route";
 
 class Routess extends Component {
