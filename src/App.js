@@ -33,13 +33,12 @@ class App extends Component {
             onClick={this.props.onClickedHeader}
           />
 
-          {this.props.activeItems === "home"}
-
           <Menu.Menu position="right">
             <LoginButton />
             <LogoutButton />
           </Menu.Menu>
         </Menu>
+        {this.props.activeItems === "home"}
       </div>
     );
   }

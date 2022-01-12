@@ -27,17 +27,17 @@ const reducerFilm = (state = stateFilm, action) => {
 const store = createStore(reducerFilm);
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Auth0Provider
-      domain="m150bisa.us.auth0.com"
-      clientId="M82m2hvPrXgQc40NHrwm2QzAHm1OPCuH"
-      redirectUri={window.location.origin}
-    >
-      <Provider store={store}>
-        <Routess />
-      </Provider>
-    </Auth0Provider>
-  </React.StrictMode>,
+  // <React.StrictMode>
+  <Auth0Provider
+    domain="m150bisa.us.auth0.com"
+    clientId="M82m2hvPrXgQc40NHrwm2QzAHm1OPCuH"
+    redirectUri={window.location.origin}
+  >
+    <Provider store={store}>
+      <Routess />
+    </Provider>
+  </Auth0Provider>,
+  // </React.StrictMode>
   document.getElementById("root")
 );
 

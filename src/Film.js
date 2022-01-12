@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
-export class Film extends Component {
+class Film extends Component {
   render() {
     return (
       <div>
@@ -9,3 +10,12 @@ export class Film extends Component {
     );
   }
 }
+
+const mapDispatchtoProps = (dispatch) => {
+  return {
+    type: "ACTIVE_ITEM",
+    ActiveItem: "film",
+  };
+};
+
+export default connect(null, mapDispatchtoProps)(Film);
