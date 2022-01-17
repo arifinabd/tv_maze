@@ -56,100 +56,105 @@ class Film extends Component {
 
   componentDidMount = async () => {
     await this.getDataFilms();
+    // await this.getDataSearch();
   };
 
   render() {
     return (
       <>
-        <div>
-          <Header size="large">Data Films</Header>
-          <Grid celled="internally">
-            <Grid.Row>
-              <Grid.Column width={2}>
-                <Image src="https://cdn.pixabay.com/photo/2016/11/15/07/09/photo-manipulation-1825450__480.jpg" />
-                <Image
-                  style={{ marginTop: 20 }}
-                  src="https://cdn.pixabay.com/photo/2016/11/15/07/09/photo-manipulation-1825450__480.jpg"
-                />
-                <Image
-                  style={{ marginTop: 20 }}
-                  src="https://cdn.pixabay.com/photo/2016/11/15/07/09/photo-manipulation-1825450__480.jpg"
-                />
-              </Grid.Column>
-              <Grid.Column width={10}>
-                <div style={{ marginBottom: "20px" }}>
-                  <Input
-                    icon="search"
-                    placeholder="Search..."
-                    onChange={(e) => {
-                      this.getDataSearch(e);
-                    }}
+        {this.state.loading ? (
+          <h1>Loding ...</h1>
+        ) : (
+          <div>
+            <Header size="large">Data Films</Header>
+            <Grid celled="internally">
+              <Grid.Row>
+                <Grid.Column width={2}>
+                  <Image src="https://cdn.pixabay.com/photo/2016/11/15/07/09/photo-manipulation-1825450__480.jpg" />
+                  <Image
+                    style={{ marginTop: 20 }}
+                    src="https://cdn.pixabay.com/photo/2016/11/15/07/09/photo-manipulation-1825450__480.jpg"
                   />
-                </div>
-                <Grid columns={3} divided>
-                  {this.state.dataFilm.map((data, key) => {
-                    var gambar = { ...data.show.image };
-                    var ratinG = { ...data.show.rating };
+                  <Image
+                    style={{ marginTop: 20 }}
+                    src="https://cdn.pixabay.com/photo/2016/11/15/07/09/photo-manipulation-1825450__480.jpg"
+                  />
+                </Grid.Column>
+                <Grid.Column width={10}>
+                  <div style={{ marginBottom: "20px" }}>
+                    <Input
+                      icon="search"
+                      placeholder="Search..."
+                      onChange={(e) => {
+                        this.getDataSearch(e);
+                      }}
+                    />
+                  </div>
+                  <Grid columns={3} divided>
+                    {this.state.dataFilm.map((data, key) => {
+                      var gambar = { ...data.show.image };
+                      var ratinG = { ...data.show.rating };
 
-                    if (data.show.image === null) {
-                      gambar =
-                        "https://rsiarafah.id/assets_web/img/images_pp/A4.jpg";
-                    } else {
-                      gambar = gambar.medium;
-                    }
+                      if (data.show.image === null) {
+                        gambar =
+                          "https://static.tvmaze.com/images/no-img/no-img-portrait-text.png";
+                      } else {
+                        gambar = gambar.medium;
+                      }
 
-                    if (ratinG.average === null) {
-                      ratinG = "0";
-                    } else {
-                      ratinG = ratinG.average;
-                    }
+                      if (ratinG.average === null) {
+                        ratinG = "0";
+                      } else {
+                        ratinG = ratinG.average;
+                      }
 
-                    return (
-                      <Grid.Column key={key}>
-                        <Card>
-                          <Image
-                            src={gambar}
-                            as="a"
-                            href={data.show.officialSite}
-                            wrapped
-                            ui={false}
-                          />
-                          <Card.Content>
-                            <Card.Header>{data.show.name}</Card.Header>
-                            <Card.Meta>
-                              language : {data.show.language}
-                            </Card.Meta>
-                            <Card.Meta>
-                              Episode : {data.show.name} <br />
-                              Status : {data.show.status}
-                            </Card.Meta>
-                            <Card.Description>
-                              Description :{" "}
-                              <div
-                                dangerouslySetInnerHTML={{
-                                  __html: data.show.summary,
-                                }}
-                              />
-                            </Card.Description>
-                          </Card.Content>
-                          <Card.Content extra>
-                            <h3 style={{ color: "gold" }}>
-                              <Icon name="star outline" />
-                              {ratinG}
-                            </h3>
-                          </Card.Content>
-                        </Card>
-                      </Grid.Column>
-                    );
-                  })}
-                </Grid>
-              </Grid.Column>
-              <Grid.Column width={3}>
-                <Image src="https://rsiarafah.id/assets_web/img/images_pp/A4.jpg" />
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        </div>
+                      return (
+                        <Grid.Column key={key}>
+                          <Card>
+                            <Image
+                              src={gambar}
+                              as="a"
+                              href={data.show.officialSite}
+                              wrapped
+                              ui={false}
+                            />
+                            <Card.Content>
+                              <Card.Header>{data.show.name}</Card.Header>
+                              <Card.Meta>
+                                language : {data.show.language}
+                              </Card.Meta>
+                              <Card.Meta>
+                                Episode : {data.show.name} <br />
+                                Status : {data.show.status}
+                              </Card.Meta>
+                              <Card.Description>
+                                Description :{" "}
+                                <div
+                                  dangerouslySetInnerHTML={{
+                                    __html: data.show.summary,
+                                  }}
+                                />
+                              </Card.Description>
+                            </Card.Content>
+                            <Card.Content extra>
+                              <h3 style={{ color: "gold" }}>
+                                <Icon name="star outline" />
+                                {ratinG}
+                              </h3>
+                            </Card.Content>
+                          </Card>
+                        </Grid.Column>
+                      );
+                    })}
+                  </Grid>
+                </Grid.Column>
+                <Grid.Column width={3}>
+                  <Image src="https://rsiarafah.id/assets_web/img/images_pp/A4.jpg" />
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+          </div>
+        )}
       </>
     );
   }

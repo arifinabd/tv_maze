@@ -72,6 +72,7 @@ class Home extends Component {
               centerMode
               centerSlidePercentage={40}
               showStatus="false"
+              showThumbs={false}
             >
               {this.state.dataCarousel.map((data, key) => {
                 return (
@@ -100,7 +101,7 @@ class Home extends Component {
 
                 if (gambar === null) {
                   gambar =
-                    "https://cdn.pixabay.com/photo/2016/11/15/07/09/photo-manipulation-1825450__480.jpg";
+                    "https://static.tvmaze.com/images/no-img/no-img-portrait-text.png";
                 } else {
                   gambar = gambar.medium;
                 }
