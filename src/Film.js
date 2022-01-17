@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Grid, Header, Image, Card, Icon } from "semantic-ui-react";
+import { Grid, Header, Image, Card, Icon, Input } from "semantic-ui-react";
 
 class Film extends Component {
   constructor() {
@@ -9,6 +9,7 @@ class Film extends Component {
     this.state = {
       dataFilm: [],
       loading: true,
+      dataSeacrh: [],
     };
   }
 
@@ -28,6 +29,28 @@ class Film extends Component {
         });
     } catch (error) {
       alert(JSON.stringify(error.message));
+    }
+  };
+
+  getDataSearch = async (e) => {
+    if (e.target.value === "") {
+      this.getDataFilms();
+    } else {
+      try {
+        await axios
+          .get(`https://api.tvmaze.com/search/shows?q=${e.target.value}`, {
+            crossDomain: true,
+          })
+          .then((res) => {
+            console.log(res.data);
+            let dataRes = res.data;
+            this.setState({
+              dataFilm: dataRes,
+            });
+          });
+      } catch (error) {
+        alert(JSON.stringify(error.message));
+      }
     }
   };
 
@@ -54,14 +77,23 @@ class Film extends Component {
                 />
               </Grid.Column>
               <Grid.Column width={10}>
+                <div style={{ marginBottom: "20px" }}>
+                  <Input
+                    icon="search"
+                    placeholder="Search..."
+                    onChange={(e) => {
+                      this.getDataSearch(e);
+                    }}
+                  />
+                </div>
                 <Grid columns={3} divided>
                   {this.state.dataFilm.map((data, key) => {
                     var gambar = { ...data.show.image };
                     var ratinG = { ...data.show.rating };
 
-                    if (gambar === null) {
+                    if (data.show.image === null) {
                       gambar =
-                        "https://cdn.pixabay.com/photo/2016/11/15/07/09/photo-manipulation-1825450__480.jpg";
+                        "https://rsiarafah.id/assets_web/img/images_pp/A4.jpg";
                     } else {
                       gambar = gambar.medium;
                     }
@@ -113,7 +145,7 @@ class Film extends Component {
                 </Grid>
               </Grid.Column>
               <Grid.Column width={3}>
-                <Image src="https://cdn.pixabay.com/photo/2016/11/15/07/09/photo-manipulation-1825450__480.jpg" />
+                <Image src="https://rsiarafah.id/assets_web/img/images_pp/A4.jpg" />
               </Grid.Column>
             </Grid.Row>
           </Grid>
