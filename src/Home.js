@@ -43,7 +43,7 @@ class Home extends Component {
         .get(`https://api.tvmaze.com/schedule`, { crossDomain: true })
         .then((res) => {
           // console.log(res.data.slice(0, 20));
-          let dataRes = res.data.slice(0, 20);
+          let dataRes = res.data;
           this.setState({
             dataSchedule: dataRes,
             loading: false,

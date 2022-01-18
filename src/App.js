@@ -10,7 +10,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Menu pointing inverted color="blue">
+        <Menu pointing secondary>
           <Menu.Item
             name="home"
             as={Link}
@@ -38,7 +38,7 @@ class App extends Component {
             <LogoutButton />
           </Menu.Menu>
         </Menu>
-        {this.props.activeItems === "home"}
+        {this.props.activeItems === "beranda"}
       </div>
     );
   }

@@ -10,7 +10,7 @@ import reportWebVitals from "./reportWebVitals";
 import Routess from "./Routess";
 
 const stateFilm = {
-  activeItems: "home",
+  activeItems: "beranda",
 };
 
 const reducerFilm = (state = stateFilm, action) => {

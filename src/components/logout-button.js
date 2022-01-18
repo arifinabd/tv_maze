@@ -1,20 +1,23 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { Button } from "semantic-ui-react";
+import { Button, Icon } from "semantic-ui-react";
 
 const LogoutButton = () => {
   const { logout, isAuthenticated } = useAuth0();
   return (
     isAuthenticated && (
       <Button
-        secondary
+        animated
         onClick={() =>
           logout({
             returnTo: window.location.origin,
           })
         }
       >
-        Log Out
+        <Button.Content visible>Log out</Button.Content>
+        <Button.Content hidden>
+          <Icon name="sign-out" />
+        </Button.Content>
       </Button>
     )
   );
