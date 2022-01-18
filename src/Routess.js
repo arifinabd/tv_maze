@@ -6,6 +6,7 @@ import Film from "./Film";
 import Home from "./Home";
 import ProtectedRoute from "./auth/protected-route";
 import Beranda from "./Beranda";
+import FilmDetail from "./FilmDetail";
 
 class Routess extends Component {
   render() {
@@ -17,6 +18,7 @@ class Routess extends Component {
           <Route path="/" component={Beranda} exact />
           <ProtectedRoute path="/home" component={Home} />
           <ProtectedRoute path="/film" component={Film} />
+          <ProtectedRoute path="/detail/:id" component={FilmDetail} />
           <ProtectedRoute path="/actor" component={Actor} />
         </Switch>
       </Router>

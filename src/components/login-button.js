@@ -7,10 +7,10 @@ const LoginButton = () => {
   return (
     !isAuthenticated && (
       <Button animated onClick={() => loginWithRedirect()}>
-        <Button.Content visible>Log in</Button.Content>
-        <Button.Content hidden>
+        <Button.Content visible>
           <Icon name="sign in" />
         </Button.Content>
+        <Button.Content hidden>Log in</Button.Content>
       </Button>
     )
   );

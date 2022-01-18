@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { Grid, Header, Image, Card, Icon, Input } from "semantic-ui-react";
 
 class Film extends Component {
@@ -20,7 +21,7 @@ class Film extends Component {
           crossDomain: true,
         })
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           let dataRes = res.data;
           this.setState({
             dataFilm: dataRes,
@@ -42,7 +43,7 @@ class Film extends Component {
             crossDomain: true,
           })
           .then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
             let dataRes = res.data;
             this.setState({
               dataFilm: dataRes,
@@ -110,39 +111,35 @@ class Film extends Component {
 
                       return (
                         <Grid.Column key={key}>
-                          <Card>
-                            <Image
-                              src={gambar}
-                              as="a"
-                              href={data.show.officialSite}
-                              wrapped
-                              ui={false}
-                            />
-                            <Card.Content>
-                              <Card.Header>{data.show.name}</Card.Header>
-                              <Card.Meta>
-                                language : {data.show.language}
-                              </Card.Meta>
-                              <Card.Meta>
-                                Episode : {data.show.name} <br />
-                                Status : {data.show.status}
-                              </Card.Meta>
-                              <Card.Description>
-                                Description :{" "}
-                                <div
-                                  dangerouslySetInnerHTML={{
-                                    __html: data.show.summary,
-                                  }}
-                                />
-                              </Card.Description>
-                            </Card.Content>
-                            <Card.Content extra>
-                              <h3 style={{ color: "gold" }}>
-                                <Icon name="star outline" />
-                                {ratinG}
-                              </h3>
-                            </Card.Content>
-                          </Card>
+                          <Link to={`/detail/${data.show.id}`}>
+                            <Card>
+                              <Image src={gambar} wrapped ui={false} />
+                              <Card.Content>
+                                <Card.Header>{data.show.name}</Card.Header>
+                                <Card.Meta>
+                                  language : {data.show.language}
+                                </Card.Meta>
+                                <Card.Meta>
+                                  Episode : {data.show.name} <br />
+                                  Status : {data.show.status}
+                                </Card.Meta>
+                                <Card.Description>
+                                  Description :{" "}
+                                  <div
+                                    dangerouslySetInnerHTML={{
+                                      __html: data.show.summary,
+                                    }}
+                                  />
+                                </Card.Description>
+                              </Card.Content>
+                              <Card.Content extra>
+                                <h3 style={{ color: "gold" }}>
+                                  <Icon name="star outline" />
+                                  {ratinG}
+                                </h3>
+                              </Card.Content>
+                            </Card>
+                          </Link>
                         </Grid.Column>
                       );
                     })}

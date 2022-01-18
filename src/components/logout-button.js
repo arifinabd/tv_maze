@@ -14,10 +14,10 @@ const LogoutButton = () => {
           })
         }
       >
-        <Button.Content visible>Log out</Button.Content>
-        <Button.Content hidden>
+        <Button.Content visible>
           <Icon name="sign-out" />
         </Button.Content>
+        <Button.Content hidden>Log out</Button.Content>
       </Button>
     )
   );
